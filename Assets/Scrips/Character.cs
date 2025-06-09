@@ -1,18 +1,22 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+[System.Serializable]
+public class Character
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string nickname;
+    public int attack;
+    public int defense;
+    public int health;
+    public float critical;
 
-    // Update is called once per frame
-    void Update()
+    public Character(string nickname, int attack, int defense, int health, float critical)
     {
-        
+        this.nickname = nickname;
+        this.attack = attack;
+        this.defense = defense;
+        this.health = health;
+        this.critical = critical;
     }
 }
