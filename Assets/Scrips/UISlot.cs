@@ -6,31 +6,31 @@ using UnityEngine.UI;
 
 public class UISlot : MonoBehaviour
 {
-    [SerializeField] private Image _icon;
-    [SerializeField] private TMP_Text _countText;
+    [SerializeField] private Image itemIcon;
+    [SerializeField] private Image equippedCheck;
 
     private ItemData _item;
-    private int _count;
+    private bool _isEquipped;
 
-    public void SetItem(ItemData item, int count)
+    public void SetItem(ItemData item, bool isEquipped = false)
     {
         _item = item;
-        _count = count;
+        _isEquipped = isEquipped;
         RefreshUI();
     }
 
     public void RefreshUI()
     {
-        if (_item != null)
+        if (_item == null)
         {
-            _icon.sprite = _item.itemIcon;
-            _icon.enabled = true;
+            itemIcon.enabled = false;
+            equippedCheck.gameObject.SetActive(false);
         }
         else
         {
-            _icon.sprite = null;
-            _icon.enabled = false;
-            _countText.text = "";
+            itemIcon.sprite = _item.itemIcon;
+            itemIcon.enabled = true;
+            equippedCheck.gameObject.SetActive(_isEquipped);
         }
     }
 }

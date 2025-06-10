@@ -17,7 +17,16 @@ public class GameManager : MonoBehaviour
     // 캐릭터 생성 및 UI에 전달
     public void SetData()
     {
-        Player = new Character("Rtan", 1, 3000, 35, 40, 100, 25f);
+        List<Item> items = new List<Item>();
+        items.Add(new Item(Resources.Load<ItemData>("Items/Sword")));
+        items.Add(new Item(Resources.Load<ItemData>("Items/Shield")));
+        items.Add(new Item(Resources.Load<ItemData>("Items/Hammer")));
+        items.Add(new Item(Resources.Load<ItemData>("Items/Bow")));
+        items.Add(new Item(Resources.Load<ItemData>("Items/Book")));
+        items.Add(new Item(Resources.Load<ItemData>("Items/Helmet")));
+        items.Add(new Item(Resources.Load<ItemData>("Items/Bracelet")));
+
+        Player = new Character("Rtan", 1, 3000, 35, 40, 100, 25f, items);
 
         UIManager.Instance.MainMenu.SetCharacter(Player);
         UIManager.Instance.Status.SetStatus(Player);
