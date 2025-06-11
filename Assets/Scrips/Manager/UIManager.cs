@@ -3,6 +3,7 @@
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
+    [SerializeField] private CharacterEquipmentUI _equipmentUI;
 
     [SerializeField] private UIMainMenu _mainMenu;
     [SerializeField] private UIStatus _status;
@@ -12,6 +13,7 @@ public class UIManager : MonoBehaviour
     public UIMainMenu MainMenu => _mainMenu;
     public UIStatus Status => _status;
     public UIInventory Inventory => _inventory;
+    public CharacterEquipmentUI EquipmentUI => _equipmentUI;
 
     private void Awake()
     {

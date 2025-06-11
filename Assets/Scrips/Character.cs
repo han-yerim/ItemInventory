@@ -40,6 +40,7 @@ public class Character
 
     public void Equip(ItemData data) // 아이템 장착시
     {
+
         Item currentItem = Inventory.FirstOrDefault(i => i.Data == data);
         if (currentItem != null && currentItem.IsEquipped) return;
 
@@ -54,6 +55,7 @@ public class Character
 
         currentItem?.Equip();
         UIManager.Instance.Status.SetStatus(this); // 스탯 UI 업데이트
+        UIManager.Instance.EquipmentUI.UpdateVisuals(this); // 장착시 아이템 이미지 활성화
     }
 
     public void UnEquip(ItemData data) // 아이템 해제시
@@ -64,6 +66,8 @@ public class Character
             item.UnEquip();
             UIManager.Instance.Status.SetStatus(this);
         }
+
+        UIManager.Instance.EquipmentUI.UpdateVisuals(this); // 장착 해제시 이미지 비활성화
     }
 
     private int GetBonus(ItemType type, System.Func<ItemStat, int> selector)
