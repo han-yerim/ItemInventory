@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Helmet
   itemIcon: {fileID: 21300000, guid: c6034cb276ef66b40b3b138d5d934bb2, type: 3}
-  itemType: 0
+  itemType: 1
   attackBonus: 0
   defenseBonus: 25
   criticalBonus: 0

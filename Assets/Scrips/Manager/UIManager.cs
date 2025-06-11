@@ -26,6 +26,6 @@ public class UIManager : MonoBehaviour
     }
     private void Start()
     {
-        GameManager.Instance.SetData();
+        GameManager.Instance.SetData(); // 캐릭터 데이터 불러오기
     }
 }

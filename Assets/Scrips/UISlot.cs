@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,13 +17,11 @@ public class UISlot : MonoBehaviour
     {
         _itemData = data;
         _isEquipped = isEquipped;
-        Debug.Log($"SetItem 호출됨: {_itemData?.itemName}");
         RefreshUI();
     }
 
     public void RefreshUI()
     {
-        Debug.Log("RefreshUI 호출됨");
 
         if (_itemData == null)
         {
@@ -34,8 +33,6 @@ public class UISlot : MonoBehaviour
         {
             itemIcon.enabled = true;
             itemIcon.sprite = _itemData.itemIcon;
-
-            Debug.Log($"아이콘 적용: {itemIcon.sprite.name}");
 
             equippedCheck.gameObject.SetActive(_isEquipped);
         }
@@ -51,8 +48,19 @@ public class UISlot : MonoBehaviour
     {
         if (_itemData == null) return;
 
-        _isEquipped = !_isEquipped;
+        var character = GameManager.Instance.Player;
+
+        if (character.Inventory.FirstOrDefault(i => i.Data == _itemData)?.IsEquipped == true)
+        {
+            character.UnEquip(_itemData);
+        }
+        else
+        {
+            character.Equip(_itemData);
+        }
+
+        // UI 갱신
+        UIManager.Instance.Inventory.InitInventoryUI();
         equippedCheck.gameObject.SetActive(_isEquipped);
-        Debug.Log($"{_itemData.itemName} 장착 상태: {_isEquipped}");
     }
 }

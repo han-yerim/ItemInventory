@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -37,14 +38,32 @@ public class Character
         Inventory.Add(item);
     }
 
-    public void Equip(Item item)
+    public void Equip(ItemData data) // 아이템 장착시
     {
-        item.Equip();
+        Item currentItem = Inventory.FirstOrDefault(i => i.Data == data);
+        if (currentItem != null && currentItem.IsEquipped) return;
+
+        // 같은 타입의 장비가 장착되어 있으면 해제
+        foreach (var item in Inventory)
+        {
+            if (item.IsEquipped && item.Data.itemType == data.itemType)
+            {
+                item.UnEquip();
+            }
+        }
+
+        currentItem?.Equip();
+        UIManager.Instance.Status.SetStatus(this); // 스탯 UI 업데이트
     }
 
-    public void UnEquip(Item item)
+    public void UnEquip(ItemData data) // 아이템 해제시
     {
-        item.UnEquip();
+        Item item = Inventory.FirstOrDefault(i => i.Data == data);
+        if (item != null && item.IsEquipped)
+        {
+            item.UnEquip();
+            UIManager.Instance.Status.SetStatus(this);
+        }
     }
 
     private int GetBonus(ItemType type, System.Func<ItemStat, int> selector)

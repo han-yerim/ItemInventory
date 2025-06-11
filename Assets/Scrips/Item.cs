@@ -27,6 +27,7 @@ public class Item
         IsEquipped = false;
     }
 
+    // 장착 관련 메서드
     public void Equip() => IsEquipped = true;
     public void UnEquip() => IsEquipped = false;
 }

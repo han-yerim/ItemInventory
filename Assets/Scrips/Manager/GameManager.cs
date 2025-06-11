@@ -32,10 +32,8 @@ public class GameManager : MonoBehaviour
         items.Add(new Item(Resources.Load<ItemData>("Items/Necklace")));
 
         ItemData hammer = Resources.Load<ItemData>("Items/Hammer");
-        Debug.Log($"Hammer 로드 {(hammer != null ? "성공" : "실패")}");
 
         Player = new Character("Rtan", 5, 15000, 100, 30, 35, 20, items);
-        Debug.Log($"인벤토리 아이템 수: {Player.Inventory.Count}");
 
         UIManager.Instance.Status.SetStatus(Player);
         UIManager.Instance.Inventory.InitInventoryUI();
