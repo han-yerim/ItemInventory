@@ -17,6 +17,14 @@ public class UIInventory : MonoBehaviour
 
     private void Start()
     {
+        // 씬에 있는 슬롯만 찾아서 리스트에 추가
+        _slots.Clear();
+        foreach (Transform child in _slotParent)
+        {
+            UISlot slot = child.GetComponent<UISlot>();
+            if (slot != null)
+                _slots.Add(slot);
+        }
         InitInventoryUI();
         backBtn.onClick.AddListener(UIManager.Instance.MainMenu.OpenMainMenu);
     }
@@ -25,19 +33,13 @@ public class UIInventory : MonoBehaviour
     public void InitInventoryUI()
     {
         var items = GameManager.Instance.Player.Inventory;
-        int slotCount = 30; // 슬롯 개수
 
-        for (int i = 0; i < slotCount; i++)
+        for (int i = 0; i < _slots.Count; i++)
         {
-            UISlot newSlot = Instantiate(_slotPrefab, _slotParent);
-
-            // 인벤토리에 아이템이 있으면 할당, 없으면 null
             if (items != null && i < items.Count)
-                newSlot.SetItem(items[i].Data, items[i].IsEquipped);
+                _slots[i].SetItem(items[i].Data, items[i].IsEquipped);
             else
-                newSlot.SetItem(null, false);
-
-            _slots.Add(newSlot);
+                _slots[i].SetItem(null, false);
         }
     }
 }

@@ -26,7 +26,7 @@ public class UIStatus : MonoBehaviour
 
         attackText.text = $"{character.TotalAttack} {(attackBonus > 0 ? $"(+{attackBonus})" : "")}";
         defenseText.text = $"{character.TotalDefense} {(defenseBonus > 0 ? $"(+{defenseBonus})" : "")}";
-        healthText.text = $"{character.Health} / 100"; // 체력은 버프 아이템이 따로 없으니 고정
-        criticalText.text = $"{character.TotalCritical}% {(criticalBonus > 0 ? $"(+{criticalBonus})" : "")}";
+        healthText.text = $"{character.Health}"; // 체력은 버프 아이템이 따로 없으니 고정
+        criticalText.text = $"{character.TotalCritical} {(criticalBonus > 0 ? $"(+{criticalBonus})" : "")}";
     }
 }

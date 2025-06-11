@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         items.Add(new Item(Resources.Load<ItemData>("Items/Helmet")));
         items.Add(new Item(Resources.Load<ItemData>("Items/Bracelet")));
 
-        Player = new Character("Rtan", 5, 15000, 30, 35, 100, 20, items);
+        Player = new Character("Rtan", 5, 15000, 100, 30, 35, 20, items);
 
         UIManager.Instance.Status.SetStatus(Player);
         UIManager.Instance.Inventory.InitInventoryUI();
