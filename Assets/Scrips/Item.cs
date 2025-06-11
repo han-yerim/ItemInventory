@@ -9,7 +9,7 @@ public struct ItemStat
     public float CriticalBonus;
 }
 
-public class Item : MonoBehaviour
+public class Item
 {
     public ItemData Data { get; private set; }
 
