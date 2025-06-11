@@ -1,18 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static UIManager Instance { get; private set; }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private UIMainMenu _mainMenu;
+    [SerializeField] private UIStatus _status;
+    [SerializeField] private UIInventory _inventory;
+
+    //읽기 전용 프로퍼티
+    public UIMainMenu MainMenu => _mainMenu;
+    public UIStatus Status => _status;
+    public UIInventory Inventory => _inventory;
+
+    private void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void Start()
+    {
+        GameManager.Instance.SetData(); // 캐릭터 데이터 불러오기
     }
 }
