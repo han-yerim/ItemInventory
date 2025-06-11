@@ -20,9 +20,13 @@ public class UIStatus : MonoBehaviour
 
     public void SetStatus(Character character)
     {
-        attackText.text = character.Attack.ToString();
-        defenseText.text = character.Defense.ToString();
-        healthText.text = $"{character.Health} / 100";
-        criticalText.text = $"{character.Critical}%";
+        int attackBonus = character.TotalAttack - character.BaseAttack;
+        int defenseBonus = character.TotalDefense - character.BaseDefense;
+        int criticalBonus = character.TotalCritical - character.BaseCritical;
+
+        attackText.text = $"{character.TotalAttack} {(attackBonus > 0 ? $"(+{attackBonus})" : "")}";
+        defenseText.text = $"{character.TotalDefense} {(defenseBonus > 0 ? $"(+{defenseBonus})" : "")}";
+        healthText.text = $"{character.Health} / 100"; // 체력은 버프 아이템이 따로 없으니 고정
+        criticalText.text = $"{character.TotalCritical}% {(criticalBonus > 0 ? $"(+{criticalBonus})" : "")}";
     }
 }

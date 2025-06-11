@@ -22,7 +22,7 @@ public class UIInventory : MonoBehaviour
     }
 
     // 슬롯 초기화
-    private void InitInventoryUI()
+    public void InitInventoryUI()
     {
         var items = GameManager.Instance.Player.Inventory;
         int slotCount = 30; // 슬롯 개수

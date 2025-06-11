@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+        SetData();
     }
 
     // 캐릭터 생성 및 UI에 전달
@@ -26,9 +27,9 @@ public class GameManager : MonoBehaviour
         items.Add(new Item(Resources.Load<ItemData>("Items/Helmet")));
         items.Add(new Item(Resources.Load<ItemData>("Items/Bracelet")));
 
-        Player = new Character("Rtan", 1, 3000, 35, 40, 100, 25f, items);
+        Player = new Character("Rtan", 5, 3000, 30, 35, 100, 20, items);
 
-        UIManager.Instance.MainMenu.SetCharacter(Player);
         UIManager.Instance.Status.SetStatus(Player);
+        UIManager.Instance.Inventory.InitInventoryUI();
     }
 }

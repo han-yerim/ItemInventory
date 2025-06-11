@@ -14,4 +14,7 @@ public class ItemData : ScriptableObject
     public string itemName;
     public Sprite itemIcon;
     public ItemType itemType;
+    public int attackBonus;
+    public int defenseBonus;
+    public float criticalBonus;
 }

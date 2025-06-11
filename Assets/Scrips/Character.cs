@@ -9,24 +9,28 @@ public class Character
     public int Level { get; private set; }
     public int Gold { get; private set; }
 
-    public int Attack { get; private set; }
-    public int Defense { get; private set; }
     public float Health { get; private set; }
-    public float Critical { get; private set; }
+    public int BaseAttack { get; private set; }
+    public int BaseDefense { get; private set; }
+    public int BaseCritical { get; private set; }
 
     public List<Item> Inventory { get; private set; }
 
-    public Character(string nickname, int level, int gold, int attack, int defense, float health, float critical, List<Item> inventory)
+    public Character(string nickname, int level, int gold, float health, int attack, int defense, int critical, List<Item> inventory)
     {
         Nickname = nickname;
         Level = level;
         Gold = gold;
-        Attack = attack;
-        Defense = defense;
         Health = health;
-        Critical = critical;
+        BaseAttack = attack;
+        BaseDefense = defense;
+        BaseCritical = critical;
         Inventory = inventory;
     }
+
+    public int TotalAttack => BaseAttack + GetBonus(ItemType.Weapon, stat => stat.AttackBonus);
+    public int TotalDefense => BaseDefense + GetBonus(ItemType.Armor, stat => stat.DefenseBonus);
+    public int TotalCritical => BaseCritical + GetBonus(ItemType.Weapon, stat => (int)stat.CriticalBonus);
 
     public void AddItem(Item item)
     {
@@ -43,11 +47,16 @@ public class Character
         item.UnEquip();
     }
 
-    public struct StatChange
+    private int GetBonus(ItemType type, System.Func<ItemStat, int> selector)
     {
-        public int attack;
-        public int defense;
-        public int health;
-        public float critical;
+        int sum = 0;
+        foreach (var item in Inventory)
+        {
+            if (item.IsEquipped && item.Data.itemType == type)
+            {
+                sum += selector(item.Stat);
+            }
+        }
+        return sum;
     }
 }
