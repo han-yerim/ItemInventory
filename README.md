@@ -13,6 +13,8 @@ Status, Inventory 버튼을 누르면 해당 UI 정보가 열립니다.
 ## ⛹️‍♂️캐릭터 정보(Status)
 ![status](https://github.com/user-attachments/assets/f455d804-0bdd-40e4-bc45-1cf4556476be)
 
+![status_a](https://github.com/user-attachments/assets/e49f338f-caab-423a-98e5-8842727cfd28)
+
 캐릭터의 공격력, 방어력, 체력, 치명타 수치 확인이 가능합니다.
 
 장착 아이템에 따른 고유 능력치 스탯 변동도 바로 반영됩니다.
@@ -25,6 +27,11 @@ Status, Inventory 버튼을 누르면 해당 UI 정보가 열립니다.
 슬롯을 클릭하면 장착/해제 유무를 알려주는 'E' 아이콘이 표시됩니다.
 
 같은 타입의 장비는 중복 착용이 불가능합니다. (무기/ 방어구 각 1개씩만 착용 가능, 무기와 방어구 1개씩은 OK)
+
+### +아이템 착용할 시 볼 수 있는 시각적 요소
+![equipped](https://github.com/user-attachments/assets/933ad90c-97ca-4629-ba94-af7b4e8c2fe1)
+
+장비에 따라 이미지가 활성화되어 캐릭터가 장비를 착용한 모습을 볼 수 있습니다.
 
 ## ⚙기능 소개
 
@@ -39,6 +46,7 @@ Status, Inventory 버튼을 누르면 해당 UI 정보가 열립니다.
 | **ItemData**      | ScriptableObject로 아이템 정보 저장 |
 | **Item**          | 인벤토리에 들어가는 아이템 개체화 (장착 여부 포함) |
 | **GameManager**   | 초기 데이터 세팅 및 UI 연결 |
+| **CharacterEquipmentUI** | 아이템 착용 시 이미지 표시 |
 
 ### 👩‍💻제작
 한예림
